@@ -1,0 +1,231 @@
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items:center;
+    background-color: black;
+}
+
+.container {
+    border: 2px solid orangered;
+    background-color: white;
+    width: 370px;
+    height: 650px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.calculator-screen {
+    box-shadow: 1px 1px 10px 1px rgb(248, 244, 244);
+    border-radius: 7px;
+    width: 83%;
+    height: 620px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content:space-around;
+}
+
+.calculator-header {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    align-items:center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    color: rgb(138, 135, 135);
+}
+
+.display-screen {
+    border-bottom: 1px solid rgb(238, 235, 235);
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.display {
+    border:none;
+    height: 135px;
+    width: 285px;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 27px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction:column-reverse;
+    text-align:right;
+    word-wrap: break-word;
+    
+}
+
+.fa-times-rectangle-o {
+    text-align: end;
+    margin-left: 270px;
+    margin-top: 5px;    
+    color: rgba(255, 68, 0, 0.692);
+}
+hr {
+    width: 30%;
+    border: 1px solid rgb(238, 235, 235);
+    margin: 0ch;
+    margin-left: 107px;
+    border: 2px solid orangered;
+   
+}
+
+.button-screen {
+    /* border: 1px solid saddlebrown; */
+    height: 364px;
+    width: 80%;
+    margin-left: 15px;
+    margin-top: 20px;
+    
+    display: grid;
+    grid-template: 60px 60px 60px 60px 60px 60px/ 60px 60px 60px 60px ;
+    grid-template-areas:
+    "A B C D"
+    "E F G H"
+    "I J K L"
+    "M N O P"
+    "R S T U";
+    grid-gap: 14px 14px;
+}
+
+.operator {
+    border-radius: 30px;
+    border: 0px;
+    box-shadow: 1px 1px 4px rgb(155, 151, 151);
+    background-color: rgb(247, 247, 247);
+    font-size: 23px;
+    font-weight: bold;
+    color: orangered;
+
+}
+.number {
+    border-radius: 30px;
+    border: 0px;
+    box-shadow: 1px 1px 4px rgb(155, 151, 151);
+    background-color: rgb(247, 247, 247);
+    font-size: 20px;
+}
+
+#clear {
+    grid-area: A;
+    color: orangered;
+}
+
+#division {
+    grid-area: B;
+}
+
+#percent {
+    grid-area: C;
+}
+#comma {
+    grid-area: P;
+}
+
+#seven{
+    grid-area: E;
+}
+#eight{
+    grid-area: F;
+}
+#nine {
+    grid-area: G;
+}
+
+#multiplication {
+    grid-area: D;
+}
+
+#four {
+    grid-area: I;
+}
+
+#five {
+    grid-area: J;
+}
+
+#six {
+    grid-area: K;
+}
+
+#subtraction {
+    grid-area: H;
+}
+
+#one {
+    grid-area: M;
+}
+#two {
+    grid-area: N;
+}
+#three {
+    grid-area: O;
+}
+#addition {
+    grid-area:L;
+}
+
+#opening-parenthesis {
+    grid-area: R;
+    font-size: 23px;
+    font-weight:lighter;
+}
+#zero {
+    grid-area: S;
+}
+#closing-parenthesis {
+    grid-area: T;
+    font-size: 23px;
+    font-weight:lighter;
+}
+
+#equal {
+    grid-area: U;
+    background-color: orangered;
+    color: white;
+}
+
+.dark-container {
+    background-color: black;
+    border: 2px solid white;
+}
+
+.dark-calculator-screen {
+    background-color: black;
+    border: none;
+    box-shadow: 1px 1px 1px 2px rgb(8, 8, 8);
+}
+
+.dark-display-screen {
+    border-bottom: 1px solid rgb(8, 8, 8);
+    box-shadow: 1px 1px 1px 2px rgb(8, 8, 8);
+}
+
+.dark-numbers {
+    background-color: black;
+    color: white;
+    border: 0px;
+    box-shadow: 1px 1px 1px  rgb(15, 15, 15);
+}
+
+.dark-operators {
+    background-color: black;
+    color: orangered;
+    border: 0px;
+    box-shadow: 1px 1px 1px rgb(15, 15, 15);
+}
+
+.dark-calculator-header {
+    color: white;
+}
