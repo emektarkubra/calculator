@@ -16,6 +16,21 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items:center;
+    z-index: 1;
+    position: relative;
+}
+
+.alert {
+    font-family: 'Times New Roman', Times, serif;
+    width: 190px;
+    height: 28px;
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 8px;
+    z-index: 2;
+    position: relative;
+    margin-top: -120px;
+    margin-left: -15px;
 }
 
 .calculator-screen {
@@ -72,13 +87,13 @@ body {
     margin-top: 5px;    
     color: rgba(255, 68, 0, 0.692);
 }
+
 hr {
     width: 30%;
     border: 1px solid rgb(238, 235, 235);
     margin: 0ch;
     margin-left: 107px;
-    border: 2px solid orangered;
-   
+    border: 2px solid orangered;  
 }
 
 .button-screen {
@@ -109,6 +124,7 @@ hr {
     color: orangered;
 
 }
+
 .number {
     border-radius: 30px;
     border: 0px;
@@ -129,16 +145,19 @@ hr {
 #percent {
     grid-area: C;
 }
-#comma {
+
+#dot {
     grid-area: P;
 }
 
 #seven{
     grid-area: E;
 }
+
 #eight{
     grid-area: F;
 }
+
 #nine {
     grid-area: G;
 }
@@ -166,12 +185,15 @@ hr {
 #one {
     grid-area: M;
 }
+
 #two {
     grid-area: N;
 }
+
 #three {
     grid-area: O;
 }
+
 #addition {
     grid-area:L;
 }
@@ -181,9 +203,11 @@ hr {
     font-size: 23px;
     font-weight:lighter;
 }
+
 #zero {
     grid-area: S;
 }
+
 #closing-parenthesis {
     grid-area: T;
     font-size: 23px;
