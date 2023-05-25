@@ -28,6 +28,8 @@ function darkLight(e) {
     display.classList.toggle("dark-calculator-header");
 }
 
+
+
 display.textContent = "";
 
 function evaluation(e) {
@@ -35,94 +37,487 @@ function evaluation(e) {
         display.textContent = "";
     } else if (e.target.id == "division") {
         display.textContent += "/";
+        // first character can't be "/"
         if (display.textContent.startsWith("/")) {
             alert();
             display.setAttribute("style", "visibility:hidden")
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
         }
+        // can't be together
+        let array = display.textContent.split("");
+        for (let i = 0; i < array.length; i++) {
+
+            if ((array[i] == array[i + 1]) && (array[i] == "/")) {
+                array.splice(i, i + 1);
+                array.push("/");
+
+                let str = array.join("");
+                display.textContent = str;
+            }
+        }
+        if (array[array.length - 2] == "x") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "+") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ".") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        }
+
+        //! Bir öncesi sakıncalı
+
+        let index = display.textContent.indexOf("/");
+        if (array[index - 1] === "(" || array[index - 1] === "+" || array[index - 1] === "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+
+        }
+
+        //! buraya kadar
+
     } else if (e.target.id == "percent") {
         display.textContent += "%";
+        //  first character can't be "%"
         if (display.textContent.startsWith("%")) {
             alert();
             display.setAttribute("style", "visibility:hidden")
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
         }
+
+        // can't be together
+        let array = display.textContent.split("");
+        for (let i = 0; i < array.length; i++) {
+            if ((array[i] == array[i + 1]) && (array[i] == "%")) {
+                array.splice(i, i + 1);
+                array.push("%");
+                let str = array.join("");
+                display.textContent = str;
+            }
+        }
+        // can't be together with another operator
+        if (array[array.length - 2] == "/") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "x") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "+") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ".") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        }
+
+        //! Bir öncesi sakıncalı
+
+        let index = display.textContent.indexOf("%");
+        if (array[index - 1] === "(" || array[index - 1] === "+" || array[index - 1] === "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+
+        }
+
+        //! buraya kadar
+
     } else if (e.target.id == "dot") {
         display.textContent += ".";
-        if (display.textContent.startsWith(".")) {
-            display.setAttribute("style", "visibility:hidden")
-            display.textContent = "0.";
-            display.setAttribute("style", "visibility:visible")
+        // first character and after "(" can't be "."
+        let array = display.textContent.split("");
+        if (array[array.length - 2] == "(") {
+            array.pop();
+            array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (display.textContent.startsWith(".")) {
+            array.pop();
+            array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
         }
+
+
+        // can't be together
+        for (let i = 0; i < array.length; i++) {
+            if ((array[i] == array[i + 1]) && (array[i] == ".")) {
+                array.splice(i, i + 1);
+                array.push(".");
+                let str = array.join("");
+                display.textContent = str;
+            }
+        }
+        // can't be together with another operator
+        if (array[array.length - 2] == "/") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "%") {
+            array.pop();
+            array.push("x0.")
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "x") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "+") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        }
+
+
     } else if (e.target.id == "seven") {
-        display.textContent += "7";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x7");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x7");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "7";
+        }
     } else if (e.target.id == "eight") {
-        display.textContent += "8";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x8");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x8");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "8";
+        }
     } else if (e.target.id == "nine") {
-        display.textContent += "9";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x9");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x9");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "9";
+        }
+
+
     } else if (e.target.id == "multiplication") {
         display.textContent += "x";
+        // first character can't be "x"
         if (display.textContent.startsWith("x")) {
             alert();
             display.setAttribute("style", "visibility:hidden")
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
         }
+        // can't be together
+        let array = display.textContent.split("");
+        for (let i = 0; i < array.length; i++) {
+            if ((array[i] == array[i + 1]) && (array[i] == "x")) {
+                array.splice(i, i + 1);
+                array.push("x");
+                let str = array.join("");
+                display.textContent = str;
+            }
+        }
+        // can't be together with another operator
+        if (array[array.length - 2] == "/") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "+") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ".") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        }
+
+        //! Bir öncesi sakıncalı
+
+        let index = display.textContent.indexOf("x");
+        if (array[index - 1] === "(" || array[index - 1] === "+" || array[index - 1] === "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+
+        }
+
+        //! buraya kadar
     } else if (e.target.id == "four") {
-        display.textContent += "4";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x4");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x4");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "4";
+        }
     } else if (e.target.id == "five") {
-        display.textContent += "5";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x5");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x5");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "5";
+        }
     } else if (e.target.id == "six") {
-        display.textContent += "6";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x6");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x6");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "6";
+        }
+
+
     } else if (e.target.id == "subtraction") {
         display.textContent += "-";
-        if (display.textContent.startsWith("-")) {
-            alert();
-            display.setAttribute("style", "visibility:hidden")
-            display.textContent = "";
-            display.setAttribute("style", "visibility:visible")
+        // can't be together
+        let array = display.textContent.split("");
+        for (let i = 0; i < array.length; i++) {
+            if ((array[i] == array[i + 1]) && (array[i] == "-")) {
+                array.splice(i, array.length);
+                let str = array.join("");
+                display.textContent = str;
+            }
+        }
+        // can't be together with another operator
+        if (array[array.length - 2] == "/") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "x") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "+") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ".") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
         }
     } else if (e.target.id == "one") {
-        display.textContent += "1";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x1");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x1");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "1";
+        }
     } else if (e.target.id == "two") {
-        display.textContent += "2";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x2");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x2");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "2";
+        }
     } else if (e.target.id == "three") {
-        display.textContent += "3";
+        // if before number, there is "%"
+        let array = display.textContent.split("");
+        if (array[array.length - 1] == "%") {
+            array.push("x3");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 1] == ")") {
+            array.push("x3");
+            let str = array.join("");
+            display.textContent = str;
+        } else {
+            display.textContent += "3";
+        }
+
     } else if (e.target.id == "addition") {
         display.textContent += "+";
-        if (display.textContent.startsWith("+")) {
-            alert();
-            display.setAttribute("style", "visibility:hidden")
-            display.textContent = "";
-            display.setAttribute("style", "visibility:visible")
+
+        // can't be together
+        let array = display.textContent.split("");
+        for (let i = 0; i < array.length; i++) {
+            if ((array[i] == array[i + 1]) && (array[i] == "+")) {
+                array.splice(i, array.length);
+                let str = array.join("");
+                display.textContent = str;
+            }
+        }
+        // can't be together with another operator
+        if (array[array.length - 2] == "/") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "x") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ".") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
         }
     } else if (e.target.id == "opening-parenthesis") {
-        display.textContent += "(";
+        display.textContent += "("
+        let array = display.textContent.split("");
+        if (array[array.length - 2] == "%") {
+            array.pop();
+            array.push("x(");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "0" || array[array.length - 2] == "1" || array[array.length - 2] == "2" || array[array.length - 2] == "3") {
+            array.pop();
+            array.push("x(");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "4" || array[array.length - 2] == "5" || array[array.length - 2] == "6") {
+            array.pop();
+            array.push("x(");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "7" || array[array.length - 2] == "8" || array[array.length - 2] == "9") {
+            array.pop();
+            array.push("x(")
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ".") {
+            array.pop()
+            let str = array.join("");
+            display.textContent = str;
+        }
+
     } else if (e.target.id == "zero") {
-        display.textContent += "0";
+        // if before zero, there is operators
+        let array = display.textContent.split("");
+        if (array.length == "0") {
+            display.textContent = "0."
+        } else {
+            display.textContent += "0"
+        }
+
+        if (array[array.length - 1] == "%") {
+            array.push("x0");
+            let str = array.join("");
+            display.textContent = str;
+        }
+        if (array[array.length - 1] == ")") {
+            array.push("x0");
+            let str = array.join("");
+            display.textContent = str;
+        }
+        if (array[array.length - 1] == "(") {
+            array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
+        }
+
+
     } else if (e.target.id == "closing-parenthesis") {
         display.textContent += ")";
+
     } else if (e.target.className == "fa fa-times-rectangle-o") {
         let text = display.textContent;
         display.textContent = text.slice(0, -1);
+
     } else if (e.target.id == "equal") {
+        let newText = display.textContent.replaceAll("x", "*");
         if (display.textContent.includes("x")) {
-            let newText = display.textContent.replaceAll("x", "*");
+
+            if (display.textContent.endsWith("x")) {
+                alert();
+            }
+
+            eval(newText);
             display.textContent = newText;
+
         }
         if (display.textContent.includes("%")) {
             let newText = display.textContent.replaceAll("%", "*(1/100)");
+            // eval(newText);
             display.textContent = newText;
         }
-        if (display.textContent.startsWith("%")) {
-            console.log("geçersiz")
-        }
-        let sonuc = eval(display.textContent);
-        display.textContent = sonuc;
+
+        let result = eval(display.textContent);
+        display.textContent = result;
     }
 }
+
+
+
 
 function alert() {
     alertBox.textContent = "Geçersiz biçim kullanıldı."
