@@ -1,4 +1,4 @@
-const moonButton = document.querySelector(".fa-moon-o");
+const darkButton = document.querySelector(".fa-adjust");
 const container = document.querySelector(".container");
 const operators = document.querySelectorAll(".operator");
 const numbers = document.querySelectorAll(".number");
@@ -10,15 +10,16 @@ const openingParenthesis = document.querySelector(".opening-parenthesis");
 const closingParenthesis = document.querySelector(".closing-parenthesis");
 const alertBox = document.querySelector(".alert")
 
+
+
 events();
 
 function events() {
-    moonButton.addEventListener("click", darkLight);
+    darkButton.addEventListener("click", darkLight);
     screenOfCalculator.addEventListener("click", evaluation);
 }
 
 function darkLight(e) {
-
     container.classList.toggle("dark-container");
     operators.forEach(operator => operator.classList.toggle("dark-operators"));
     numbers.forEach(number => number.classList.toggle("dark-numbers"));
@@ -29,10 +30,10 @@ function darkLight(e) {
 }
 
 
-
 display.textContent = "";
 
 function evaluation(e) {
+
     if (e.target.id == "clear") {
         display.textContent = "";
     } else if (e.target.id == "division") {
@@ -49,7 +50,7 @@ function evaluation(e) {
         for (let i = 0; i < array.length; i++) {
 
             if ((array[i] == array[i + 1]) && (array[i] == "/")) {
-                array.splice(i, i + 1);
+                array.splice(i, array.length - 1);
                 array.push("/");
 
                 let str = array.join("");
@@ -74,7 +75,7 @@ function evaluation(e) {
             display.textContent = str;
         }
 
-        //! Bir öncesi sakıncalı
+        // some operators cant be before 
 
         let index = display.textContent.indexOf("/");
         if (array[index - 1] === "(" || array[index - 1] === "+" || array[index - 1] === "-") {
@@ -83,8 +84,6 @@ function evaluation(e) {
             display.textContent = str;
 
         }
-
-        //! buraya kadar
 
     } else if (e.target.id == "percent") {
         display.textContent += "%";
@@ -129,34 +128,61 @@ function evaluation(e) {
             display.textContent = str;
         }
 
-        //! Bir öncesi sakıncalı
+        // some operators cant be before 
 
         let index = display.textContent.indexOf("%");
         if (array[index - 1] === "(" || array[index - 1] === "+" || array[index - 1] === "-") {
             array.pop();
             let str = array.join("");
             display.textContent = str;
-
         }
-
-        //! buraya kadar
 
     } else if (e.target.id == "dot") {
         display.textContent += ".";
-        // first character and after "(" can't be "."
+        // first character can't be "." but it can use with other operators
         let array = display.textContent.split("");
-        if (array[array.length - 2] == "(") {
+        if (display.textContent.startsWith(".")) {
             array.pop();
             array.push("0.");
             let str = array.join("");
             display.textContent = str;
-        } else if (display.textContent.startsWith(".")) {
+        } else if (array[array.length - 2] == "(") {
             array.pop();
             array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ")") {
+            array.pop();
+            array.push("x0.");
+            let str = array.join("");
+            display.textContent = str;
+
+        } else if (array[array.length - 2] == "-") {
+            array.pop();
+            array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "+") {
+            array.pop();
+            array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "/") {
+            array.pop();
+            array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "x") {
+            array.pop();
+            array.push("0.");
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "%") {
+            array.pop();
+            array.push("x0.")
             let str = array.join("");
             display.textContent = str;
         }
-
 
         // can't be together
         for (let i = 0; i < array.length; i++) {
@@ -167,30 +193,6 @@ function evaluation(e) {
                 display.textContent = str;
             }
         }
-        // can't be together with another operator
-        if (array[array.length - 2] == "/") {
-            array.pop();
-            let str = array.join("");
-            display.textContent = str;
-        } else if (array[array.length - 2] == "%") {
-            array.pop();
-            array.push("x0.")
-            let str = array.join("");
-            display.textContent = str;
-        } else if (array[array.length - 2] == "x") {
-            array.pop();
-            let str = array.join("");
-            display.textContent = str;
-        } else if (array[array.length - 2] == "-") {
-            array.pop();
-            let str = array.join("");
-            display.textContent = str;
-        } else if (array[array.length - 2] == "+") {
-            array.pop();
-            let str = array.join("");
-            display.textContent = str;
-        }
-
 
     } else if (e.target.id == "seven") {
         // if before number, there is "%"
@@ -235,7 +237,6 @@ function evaluation(e) {
             display.textContent += "9";
         }
 
-
     } else if (e.target.id == "multiplication") {
         display.textContent += "x";
         // first character can't be "x"
@@ -274,7 +275,7 @@ function evaluation(e) {
             display.textContent = str;
         }
 
-        //! Bir öncesi sakıncalı
+        // some operators cant be before 
 
         let index = display.textContent.indexOf("x");
         if (array[index - 1] === "(" || array[index - 1] === "+" || array[index - 1] === "-") {
@@ -284,7 +285,6 @@ function evaluation(e) {
 
         }
 
-        //! buraya kadar
     } else if (e.target.id == "four") {
         // if before number, there is "%"
         let array = display.textContent.split("");
@@ -328,24 +328,19 @@ function evaluation(e) {
             display.textContent += "6";
         }
 
-
     } else if (e.target.id == "subtraction") {
         display.textContent += "-";
         // can't be together
         let array = display.textContent.split("");
         for (let i = 0; i < array.length; i++) {
             if ((array[i] == array[i + 1]) && (array[i] == "-")) {
-                array.splice(i, array.length);
+                array.splice(i + 1, array.length);
                 let str = array.join("");
                 display.textContent = str;
             }
         }
         // can't be together with another operator
-        if (array[array.length - 2] == "/") {
-            array.pop();
-            let str = array.join("");
-            display.textContent = str;
-        } else if (array[array.length - 2] == "x") {
+        if (array[array.length - 2] == "x") {
             array.pop();
             let str = array.join("");
             display.textContent = str;
@@ -403,22 +398,18 @@ function evaluation(e) {
 
     } else if (e.target.id == "addition") {
         display.textContent += "+";
-
-        // can't be together
         let array = display.textContent.split("");
+        // can't be together
+
         for (let i = 0; i < array.length; i++) {
             if ((array[i] == array[i + 1]) && (array[i] == "+")) {
-                array.splice(i, array.length);
+                array.splice(i + 1, array.length);
                 let str = array.join("");
                 display.textContent = str;
             }
         }
         // can't be together with another operator
-        if (array[array.length - 2] == "/") {
-            array.pop();
-            let str = array.join("");
-            display.textContent = str;
-        } else if (array[array.length - 2] == "x") {
+        if (array[array.length - 2] == "x") {
             array.pop();
             let str = array.join("");
             display.textContent = str;
@@ -485,39 +476,32 @@ function evaluation(e) {
             display.textContent = str;
         }
 
-
     } else if (e.target.id == "closing-parenthesis") {
         display.textContent += ")";
+        //  first character can't be "%"
+        if (display.textContent.startsWith(")")) {
+            alert();
+            display.setAttribute("style", "visibility:hidden")
+            display.textContent = "";
+            display.setAttribute("style", "visibility:visible")
+        }
 
-    } else if (e.target.className == "fa fa-times-rectangle-o") {
+    } else if (e.target.className == "material-icons") {
         let text = display.textContent;
         display.textContent = text.slice(0, -1);
 
     } else if (e.target.id == "equal") {
-        let newText = display.textContent.replaceAll("x", "*");
-        if (display.textContent.includes("x")) {
 
-            if (display.textContent.endsWith("x")) {
-                alert();
-            }
-
-            eval(newText);
-            display.textContent = newText;
-
-        }
-        if (display.textContent.includes("%")) {
-            let newText = display.textContent.replaceAll("%", "*(1/100)");
-            // eval(newText);
-            display.textContent = newText;
+        if (display.textContent.includes("x") || display.textContent.includes("%")) {
+            let newText = display.textContent.replaceAll("x", "*");
+            let newText2 = newText.replaceAll("%", "*(1/100)");
+            display.textContent = eval(newText2);
         }
 
         let result = eval(display.textContent);
         display.textContent = result;
     }
 }
-
-
-
 
 function alert() {
     alertBox.textContent = "Geçersiz biçim kullanıldı."

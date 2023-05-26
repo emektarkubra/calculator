@@ -57,6 +57,10 @@ body {
     color: rgb(138, 135, 135);
 }
 
+.fa-adjust {
+    cursor: pointer;
+}
+
 .display-screen {
     border-bottom: 1px solid rgb(238, 235, 235);
     height: 175px;
@@ -81,11 +85,12 @@ body {
     
 }
 
-.fa-times-rectangle-o {
+.material-icons {
     text-align: end;
-    margin-left: 270px;
+    margin-left: 245px;
     margin-top: 5px;    
     color: rgba(255, 68, 0, 0.692);
+    cursor: pointer;
 }
 
 hr {
@@ -136,88 +141,108 @@ hr {
 #clear {
     grid-area: A;
     color: orangered;
+    cursor: pointer;
 }
 
 #division {
     grid-area: B;
+    cursor: pointer;
 }
 
 #percent {
     grid-area: C;
+    cursor: pointer;
 }
 
 #dot {
     grid-area: P;
+    cursor: pointer;
 }
 
 #seven{
     grid-area: E;
+    cursor: pointer;
 }
 
 #eight{
     grid-area: F;
+    cursor: pointer;
 }
 
 #nine {
     grid-area: G;
+    cursor: pointer;
 }
 
 #multiplication {
     grid-area: D;
+    cursor: pointer;
 }
 
 #four {
     grid-area: I;
+    cursor: pointer;
 }
 
 #five {
     grid-area: J;
+    cursor: pointer;
 }
 
 #six {
     grid-area: K;
+    cursor: pointer;
 }
 
 #subtraction {
     grid-area: H;
+    cursor: pointer;
 }
 
 #one {
     grid-area: M;
+    cursor: pointer;
 }
 
 #two {
     grid-area: N;
+    cursor: pointer;
 }
 
 #three {
     grid-area: O;
+    cursor: pointer;
 }
 
 #addition {
     grid-area:L;
+    cursor: pointer;
 }
 
 #opening-parenthesis {
     grid-area: R;
     font-size: 23px;
     font-weight:lighter;
+    cursor: pointer;
 }
 
 #zero {
     grid-area: S;
+    cursor: pointer;
 }
 
 #closing-parenthesis {
     grid-area: T;
     font-size: 23px;
     font-weight:lighter;
+    cursor: pointer;
 }
 
 #equal {
     grid-area: U;
     background-color: orangered;
     color: white;
+    cursor: pointer;
 }
 
 .dark-container {
