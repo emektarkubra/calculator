@@ -139,6 +139,17 @@ function evaluation(e) {
 
     } else if (e.target.id == "dot") {
         display.textContent += ".";
+
+        // prevent multiple dots in a number
+        let numbers = display.textContent.split(/[^\d.]/);
+        let lastNumber = numbers[numbers.length - 1];
+        if (lastNumber && (lastNumber.indexOf('.') !== lastNumber.lastIndexOf('.'))) {
+            let array = display.textContent.split("");
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        }
+
         // first character can't be "." but it can use with other operators
         let array = display.textContent.split("");
         if (display.textContent.startsWith(".")) {
@@ -423,6 +434,7 @@ function evaluation(e) {
             display.textContent = str;
         }
     } else if (e.target.id == "opening-parenthesis") {
+        // before "(", some operators can't be
         display.textContent += "("
         let array = display.textContent.split("");
         if (array[array.length - 2] == "%") {
@@ -485,6 +497,55 @@ function evaluation(e) {
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
         }
+        // number of "(" and ")" should be equal
+
+        let counter1 = 0; // number of (
+        let counter2 = 0; // number of )
+
+        for (let i = 0; i < display.textContent.length; i++) {
+            if (display.textContent[i] == "(") {
+                counter1++;
+            }
+            if (display.textContent[i] == ")") {
+                counter2++;
+            }
+            if (counter2 > counter1) {
+                let array = display.textContent.split("");
+                array.pop();
+                let str = array.join("");
+                display.textContent = str;
+            }
+        }
+
+        // before ")", some operators can't be
+        let array = display.textContent.split("");
+        if (array[array.length - 2] == "/") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "x") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "-") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "+") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == "(") {
+            array.pop();
+            let str = array.join("");
+            display.textContent = str;
+        } else if (array[array.length - 2] == ".") {
+            array.pop();
+            array.push("0)")
+            let str = array.join("");
+            display.textContent = str;
+        }
+
 
     } else if (e.target.className == "material-icons") {
         let text = display.textContent;
@@ -492,14 +553,19 @@ function evaluation(e) {
 
     } else if (e.target.id == "equal") {
 
-        if (display.textContent.includes("x") || display.textContent.includes("%")) {
-            let newText = display.textContent.replaceAll("x", "*");
-            let newText2 = newText.replaceAll("%", "*(1/100)");
-            display.textContent = eval(newText2);
+        try {
+            if (display.textContent.includes("x") || display.textContent.includes("%")) {
+                let newText = display.textContent.replaceAll("x", "*");
+                let newText2 = newText.replaceAll("%", "*(1/100)");
+                display.textContent = eval(newText2);
+            }
+            let result = eval(display.textContent);
+            display.textContent = result;
+
+        } catch (error) {
+            alert();
         }
 
-        let result = eval(display.textContent);
-        display.textContent = result;
     }
 }
 
