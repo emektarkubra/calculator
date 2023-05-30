@@ -40,7 +40,7 @@ function evaluation(e) {
         display.textContent += "/";
         // first character can't be "/"
         if (display.textContent.startsWith("/")) {
-            alert();
+            alert("Geçersiz biçim kullanıldı.");
             display.setAttribute("style", "visibility:hidden")
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
@@ -89,7 +89,7 @@ function evaluation(e) {
         display.textContent += "%";
         //  first character can't be "%"
         if (display.textContent.startsWith("%")) {
-            alert();
+            alert("Geçersiz biçim kullanıldı.");
             display.setAttribute("style", "visibility:hidden")
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
@@ -252,7 +252,7 @@ function evaluation(e) {
         display.textContent += "x";
         // first character can't be "x"
         if (display.textContent.startsWith("x")) {
-            alert();
+            alert("Geçersiz biçim kullanıldı.");
             display.setAttribute("style", "visibility:hidden")
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
@@ -492,7 +492,7 @@ function evaluation(e) {
         display.textContent += ")";
         //  first character can't be "%"
         if (display.textContent.startsWith(")")) {
-            alert();
+            alert("Geçersiz biçim kullanıldı.");
             display.setAttribute("style", "visibility:hidden")
             display.textContent = "";
             display.setAttribute("style", "visibility:visible")
@@ -561,16 +561,18 @@ function evaluation(e) {
             }
             let result = eval(display.textContent);
             display.textContent = result;
-
+            if (result == "Infinity") {
+                display.textContent = "";
+                alert("Sıfıra bölünemez");
+            }
         } catch (error) {
-            alert();
+            alert("Geçersiz biçim kullanıldı.");
         }
-
     }
 }
 
-function alert() {
-    alertBox.textContent = "Geçersiz biçim kullanıldı."
+function alert(text) {
+    alertBox.textContent = text;
     alertBox.style.background = "rgb(60, 60, 60)";
     alertBox.style.color = "white";
     setTimeout(() => {
