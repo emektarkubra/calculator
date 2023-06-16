@@ -60,7 +60,7 @@ npm install
 ```
 
 ### How to use
-After clone, open index.html in your extended browser and start adding new todos
+After clone, open index.html in your extended browser and start to calculate.
 
 ***
 ## 👷‍♀️ Authors
