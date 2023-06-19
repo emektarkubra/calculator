@@ -46,19 +46,6 @@ or using HTTPS
 ```javascript
 git clone https://github.com/emektarkubra/calculator.git
 ```
-
-move into project directory
-
-```javascript
-cd calculator
-```
-
-Install Project dependancies using NPM
-
-```javascript
-npm install
-```
-
 ### How to use
 After clone, open index.html in your extended browser and start to calculate.
 
